@@ -3,6 +3,7 @@
 use Microsoft.Extensions.Logging as NHibernate logging provider
 
 [![NuGet version](https://img.shields.io/nuget/v/NHibernate.Extensions.Logging.svg?style=flat-square)](https://www.nuget.org/packages/NHibernate.Extensions.Logging/)
+[![Build status](https://ci.appveyor.com/api/projects/status/m76t1k6o82g494s3?svg=true)](https://ci.appveyor.com/project/akunzai/nhibernate-extensions-logging)
 
 ## Usage
 
