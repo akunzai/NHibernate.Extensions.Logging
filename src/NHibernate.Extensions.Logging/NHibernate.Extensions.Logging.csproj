@@ -12,6 +12,7 @@
     <PackageLicenseUrl>https://github.com/akunzai/NHibernate.Extensions.Logging/blob/master/LICENSE.md</PackageLicenseUrl>
     <Version>1.1.0</Version>
     <PackageReleaseNotes>Downgrade to NHibernate 3.1.0</PackageReleaseNotes>
+    <PackageTags>NHibernate;Logging</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
