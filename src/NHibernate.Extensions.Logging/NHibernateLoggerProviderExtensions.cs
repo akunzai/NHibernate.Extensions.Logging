@@ -1,4 +1,4 @@
-﻿using NHibernate;
+using NHibernate;
 using NHibernate.Extensions.Logging;
 
 namespace Microsoft.Extensions.Logging
@@ -7,7 +7,7 @@ namespace Microsoft.Extensions.Logging
     {
         public static ILoggerFactory UseAsNHibernateLoggerProvider(this ILoggerFactory factory)
         {
-            LoggerProvider.SetLoggersFactory(new MicrosoftLoggerFactory(factory));
+            NHibernateLogger.SetLoggersFactory(new MicrosoftLoggerFactory(factory));
             return factory;
         }
     }

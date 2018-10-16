@@ -17,10 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "samples\Sample
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWebApp", "samples\SampleWebApp\SampleWebApp.csproj", "{BF55D397-BB11-4D9B-B7E1-574DEEC606A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleShared", "samples\SampleShared\SampleShared.csproj", "{322E0BF4-B57F-4135-AE38-12CDAD74E28D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleShared", "samples\SampleShared\SampleShared.csproj", "{322E0BF4-B57F-4135-AE38-12CDAD74E28D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E5F749FC-047A-446F-9319-3D2CB2CD7BB3}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.md = CHANGELOG.md
+		Directory.Build.props = Directory.Build.props
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection

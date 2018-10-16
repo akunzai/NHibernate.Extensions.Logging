@@ -1,29 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
-    <NoWarn>1701;1702;1705;NU1603;NU1701</NoWarn>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/akunzai/NHibernate.Extensions.Logging</RepositoryUrl>
-    <Authors>Galaxy Software Services Corporation</Authors>
-    <PackageProjectUrl>https://github.com/akunzai/NHibernate.Extensions.Logging</PackageProjectUrl>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <Description>use Microsoft.Extensions.Logging as NHibernate logging provider</Description>
-    <PackageLicenseUrl>https://github.com/akunzai/NHibernate.Extensions.Logging/blob/master/LICENSE.md</PackageLicenseUrl>
-    <Version>1.1.1</Version>
-    <PackageReleaseNotes>Fix ambiguous extension method class name</PackageReleaseNotes>
-    <PackageTags>NHibernate;Logging</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NHibernate" Version="3.1.0.4000" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="1.1.2" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="NHibernate" Version="5.1.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.0.0" />
   </ItemGroup>
 

@@ -5,6 +5,26 @@ use Microsoft.Extensions.Logging as NHibernate logging provider
 [![NuGet version](https://img.shields.io/nuget/v/NHibernate.Extensions.Logging.svg?style=flat-square)](https://www.nuget.org/packages/NHibernate.Extensions.Logging/)
 [![Build status](https://ci.appveyor.com/api/projects/status/m76t1k6o82g494s3?svg=true)](https://ci.appveyor.com/project/akunzai/nhibernate-extensions-logging)
 
+## Installation
+
+For NHibernate >= 5.1.0
+
+```shell
+# Package Manager
+Install-Package NHibernate.Extensions.Logging
+# .NET CLI
+dotnet add package NHibernate.Extensions.Logging
+```
+
+For NHibernate < 5.1.0
+
+```shell
+# Package Manager
+Install-Package NHibernate.Extensions.Logging -Version 1.1.1
+# .NET CLI
+dotnet add package NHibernate.Extensions.Logging -Version 1.1.1
+```
+
 ## Usage
 
 Console App
@@ -17,24 +37,6 @@ class Program()
 		var loggerFactory = new LoggerFactory()
 		.AddDebug()
 		.UseAsNHibernateLoggerProvider();
-	}
-}
-```
-
-ASP.NET Core 1.x
-
-```csharp
-public class Startup
-{
-	public void Configure(
-        IApplicationBuilder app,
-        IHostingEnvironment env,
-        ILoggerFactory loggerFactory)
-	{
-		if (env.IsDevelopment())
-		{
-			loggerFactory.UseAsNHibernateLoggerProvider();
-		}
 	}
 }
 ```
@@ -55,7 +57,3 @@ public class Startup
     }
 }
 ```
-
-## [NuGet Package](https://www.nuget.org/packages/NHibernate.Extensions.Logging)
-## [Release Notes](https://github.com/akunzai/NHibernate.Extensions.Logging/releases)
-## [License](LICENSE.md)
