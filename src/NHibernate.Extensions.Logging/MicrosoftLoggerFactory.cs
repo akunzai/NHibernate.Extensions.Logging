@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 namespace NHibernate.Extensions.Logging
 {
     /// <summary>
-    /// Implementation of the <see cref="NHibernate.ILoggerFactory"/> interface 
+    /// Implementation of the <see cref="NHibernate.INHibernateLoggerFactory"/> interface 
     /// to allow the usage of Microsoft.Extensions.Logging with the NHibernate 
     /// logging infrastructure.
     /// <seealso cref="MicrosoftLogger"/>
@@ -14,7 +14,7 @@ namespace NHibernate.Extensions.Logging
     /// </code>
     /// </example>
     /// </summary>
-    public class MicrosoftLoggerFactory : ILoggerFactory
+    public class MicrosoftLoggerFactory : INHibernateLoggerFactory
     {
         private readonly Microsoft.Extensions.Logging.ILoggerFactory _factory;
 
@@ -25,12 +25,12 @@ namespace NHibernate.Extensions.Logging
 
 		#region ILoggerFactory
 
-		public IInternalLogger LoggerFor(string keyName)
+		public INHibernateLogger LoggerFor(string keyName)
 	    {
 		    return new MicrosoftLogger(_factory.CreateLogger(keyName));
 	    }
 
-	    public IInternalLogger LoggerFor(System.Type type)
+	    public INHibernateLogger LoggerFor(System.Type type)
 	    {
 		    return new MicrosoftLogger(_factory.CreateLogger(type));
 	    }

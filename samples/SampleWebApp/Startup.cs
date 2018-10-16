@@ -1,4 +1,3 @@
-﻿using System.Linq;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Microsoft.AspNetCore.Builder;
@@ -43,10 +42,7 @@ namespace SampleWebApp
                 return Fluently.Configure()
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TodoMap>())
                     .CurrentSessionContext<AsyncLocalSessionContext>()
-                    .ExposeConfiguration(cfg =>
-                    {
-                        new SchemaUpdate(cfg).Execute(true, true);
-                    })
+                    .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
                     .Database(dbCfg)
                     .Diagnostics(d => d.OutputToConsole().Enable())
                     .BuildSessionFactory();
@@ -68,23 +64,19 @@ namespace SampleWebApp
                 using (var session = sessionFactory.OpenSession())
                 {
                     CurrentSessionContext.Bind(session);
-                    await next.Invoke();
+                    await next.Invoke().ConfigureAwait(false);
                 }
             });
             app.Run(async (context) =>
             {
                 var session = sessionFactory.GetCurrentSession();
-                var todos = session.QueryOver<Todo>().Where(x => x.Title == "Test").List();
-                if (todos.Any())
-                {
-                    await context.Response.WriteAsync($"Found Todo: {todos.First().Id}");
-                    return;
-                }
+                var entities = session.QueryOver<Todo>().Where(x => x.Title == "Test").List();
+                await context.Response.WriteAsync($"<h1>Found Entities: {entities.Count}</h1>").ConfigureAwait(false);
                 using (var tx = session.BeginTransaction())
                 {
                     var entity = new Todo { Title = "Test" };
                     session.Save(entity);
-                    await context.Response.WriteAsync($"Saved Todo: {entity.Id}");
+                    await context.Response.WriteAsync($"<h2>Saved Entity: {entity.Id}</h2>").ConfigureAwait(false);
                     tx.Commit();
                 }
             });
