@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate.Extensions.Logging", "src\NHibernate.Extensions.Logging\NHibernate.Extensions.Logging.csproj", "{CD7AA382-A51E-45A2-AF10-0BA3CA126BAA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A6CF7F4B-963D-414C-B585-1FB03BBDC752}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{8C10C36A-9162-4B56-B342-31CA8BFBB118}"
 EndProject
