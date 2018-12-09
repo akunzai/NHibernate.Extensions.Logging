@@ -33,14 +33,15 @@ Console App
 ...
 class Program()
 {
-	static void Main(string[] args)
-	{
+    static void Main(string[] args)
+    {
         ...
         var loggerFactory = services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
         loggerFactory.UseAsNHibernateLoggerProvider();
-	}
+    }
 
-    private static IServiceProvider ConfigureServices(IServiceCollection services){
+    private static IServiceProvider ConfigureServices(IServiceCollection services)
+    {
         ...
     }
 }
@@ -52,7 +53,7 @@ ASP.NET Core 2.x
 ...
 public class Startup
 {
-	public Startup(ILoggerFactory loggerFactory)
+    public Startup(ILoggerFactory loggerFactory)
     {
         loggerFactory.UseAsNHibernateLoggerProvider();
     }
