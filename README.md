@@ -30,30 +30,31 @@ dotnet add package NHibernate.Extensions.Logging -Version 1.1.1
 Console App
 
 ```csharp
+...
 class Program()
 {
 	static void Main(string[] args)
 	{
-		var loggerFactory = new LoggerFactory()
-		.AddDebug()
-		.UseAsNHibernateLoggerProvider();
+        ...
+        var loggerFactory = services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
+        loggerFactory.UseAsNHibernateLoggerProvider();
 	}
+
+    private static IServiceProvider ConfigureServices(IServiceCollection services){
+        ...
+    }
 }
 ```
 
 ASP.NET Core 2.x
 
 ```csharp
+...
 public class Startup
 {
-	public Startup(
-        IHostingEnvironment env,
-        ILoggerFactory loggerFactory)
+	public Startup(ILoggerFactory loggerFactory)
     {
-        if (env.IsDevelopment())
-        {
-            loggerFactory.UseAsNHibernateLoggerProvider();
-        }
+        loggerFactory.UseAsNHibernateLoggerProvider();
     }
 }
 ```

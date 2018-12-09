@@ -16,10 +16,16 @@ namespace SampleApp
     {
         public static void Main(string[] args)
         {
-            var services = new ServiceCollection();
-            ConfigureServices(services);
-            var serviceProvider = services.BuildServiceProvider();
-            var sessionFactory = serviceProvider.GetService<ISessionFactory>();
+            var env = Environment.GetEnvironmentVariable("ENVIRONMENT") ?? "Production";
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env}.json", optional: true)
+                .Build();
+            var services = ConfigureServices(new ServiceCollection());
+            var loggerFactory = services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
+            loggerFactory.UseAsNHibernateLoggerProvider();
+            var sessionFactory = services.GetService<ISessionFactory>();
             using (var session = sessionFactory.OpenSession())
             {
                 var entities = session.QueryOver<Todo>().Where(x => x.Title == "Test").List();
@@ -36,18 +42,16 @@ namespace SampleApp
             Console.ReadKey();
         }
 
-        private static void ConfigureServices(IServiceCollection services)
+        private static IConfiguration Configuration { get; set; }
+
+        private static IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            var env = Environment.GetEnvironmentVariable("ENVIRONMENT") ?? "Development";
-            services.AddSingleton<IConfiguration>(new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env}.json", optional: true)
-                .Build());
-            var loggerFactory = new LoggerFactory()
-                .AddDebug()
-                .UseAsNHibernateLoggerProvider();
-            services.AddSingleton(loggerFactory);
+            services.AddSingleton(Configuration);
+            services.AddLogging(logging =>
+            {
+                logging.AddConfiguration(Configuration.GetSection("Logging"));
+                logging.AddDebug();
+            });
             services.AddSingleton(sp =>
             {
                 var configuration = sp.GetRequiredService<IConfiguration>();
@@ -64,6 +68,7 @@ namespace SampleApp
                     .Diagnostics(d => d.OutputToConsole().Enable())
                     .BuildSessionFactory();
             });
+            return services.BuildServiceProvider();
         }
     }
 }
