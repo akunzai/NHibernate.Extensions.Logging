@@ -2,14 +2,14 @@ using System;
 using Microsoft.Extensions.Logging;
 using Xunit;
 
-namespace NHibernate.Extensions.Logging.Test
+namespace NHibernate.Extensions.Logging.Tests
 {
-    public class MicrosoftLoggerTest
+    public class MicrosoftLoggerTests
     {
         private readonly MockLogger _mock;
         private readonly INHibernateLogger _logger;
 
-        public MicrosoftLoggerTest()
+        public MicrosoftLoggerTests()
         {
             _mock = new MockLogger();
             _logger = new MicrosoftLogger(_mock);

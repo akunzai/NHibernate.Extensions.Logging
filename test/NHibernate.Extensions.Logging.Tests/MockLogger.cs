@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
 
-namespace NHibernate.Extensions.Logging.Test
+namespace NHibernate.Extensions.Logging.Tests
 {
     public class MockLogger : ILogger
     {
