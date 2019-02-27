@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2019-02-27
+
+## NHibernate.Extensions.Logging 2.1.0
+
+- Signing assembly with Strong Name
+
 ## 2018-10-16
 
 ## NHibernate.Extensions.Logging 2.0.0
