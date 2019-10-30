@@ -47,7 +47,7 @@ class Program()
 }
 ```
 
-ASP.NET Core 2.x
+ASP.NET Core
 
 ```csharp
 ...
