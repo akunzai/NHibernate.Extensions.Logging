@@ -6,20 +6,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.*.json" CopyToPublishDirectory="Never">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="NHibernate" Version="5.2.3" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.109.2" />
+    <PackageReference Include="NHibernate" Version="5.2.6" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\NHibernate.Extensions.Logging\NHibernate.Extensions.Logging.csproj" />
     <ProjectReference Include="..\SampleShared\SampleShared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 </Project>
