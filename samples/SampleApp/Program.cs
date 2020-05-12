@@ -16,7 +16,7 @@ namespace SampleApp
     {
         public static void Main(string[] args)
         {
-            var env = Environment.GetEnvironmentVariable("ENVIRONMENT") ?? "Production";
+            var env = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production";
             Configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
@@ -30,13 +30,11 @@ namespace SampleApp
             {
                 var entities = session.QueryOver<Todo>().Where(x => x.Title == "Test").List();
                 Console.WriteLine($"Found Entities: {entities.Count}");
-                using (var tx = session.BeginTransaction())
-                {
-                    var entity = new Todo { Title = "Test" };
-                    session.Save(entity);
-                    Console.WriteLine($"Saved Entity: {entity.Id}");
-                    tx.Commit();
-                }
+                using var tx = session.BeginTransaction();
+                var entity = new Todo { Title = "Test" };
+                session.Save(entity);
+                Console.WriteLine($"Saved Entity: {entity.Id}");
+                tx.Commit();
             }
             Console.WriteLine("Press the ANY key to exit...");
             Console.ReadKey();

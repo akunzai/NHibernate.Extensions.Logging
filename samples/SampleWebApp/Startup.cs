@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NHibernate;
 using NHibernate.Context;
@@ -17,7 +18,7 @@ namespace SampleWebApp
     public class Startup
     {
         public Startup(
-            IHostingEnvironment env,
+            IWebHostEnvironment env,
             Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
@@ -52,7 +53,7 @@ namespace SampleWebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(
             IApplicationBuilder app,
-            IHostingEnvironment env,
+            IWebHostEnvironment env,
             ISessionFactory sessionFactory)
         {
             if (env.IsDevelopment())
@@ -61,24 +62,20 @@ namespace SampleWebApp
             }
             app.Use(async (context, next) =>
             {
-                using (var session = sessionFactory.OpenSession())
-                {
-                    CurrentSessionContext.Bind(session);
-                    await next.Invoke().ConfigureAwait(false);
-                }
+                using var session = sessionFactory.OpenSession();
+                CurrentSessionContext.Bind(session);
+                await next.Invoke().ConfigureAwait(false);
             });
             app.Run(async (context) =>
             {
                 var session = sessionFactory.GetCurrentSession();
                 var entities = session.QueryOver<Todo>().Where(x => x.Title == "Test").List();
                 await context.Response.WriteAsync($"<h1>Found Entities: {entities.Count}</h1>").ConfigureAwait(false);
-                using (var tx = session.BeginTransaction())
-                {
-                    var entity = new Todo { Title = "Test" };
-                    session.Save(entity);
-                    await context.Response.WriteAsync($"<h2>Saved Entity: {entity.Id}</h2>").ConfigureAwait(false);
-                    tx.Commit();
-                }
+                using var tx = session.BeginTransaction();
+                var entity = new Todo { Title = "Test" };
+                session.Save(entity);
+                await context.Response.WriteAsync($"<h2>Saved Entity: {entity.Id}</h2>").ConfigureAwait(false);
+                tx.Commit();
             });
         }
     }
