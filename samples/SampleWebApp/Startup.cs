@@ -17,16 +17,6 @@ namespace SampleWebApp
 {
     public class Startup
     {
-        public Startup(
-            IWebHostEnvironment env,
-            Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)
-        {
-            if (env.IsDevelopment())
-            {
-                loggerFactory.UseAsNHibernateLoggerProvider();
-            }
-        }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -54,11 +44,13 @@ namespace SampleWebApp
         public void Configure(
             IApplicationBuilder app,
             IWebHostEnvironment env,
-            ISessionFactory sessionFactory)
+            ISessionFactory sessionFactory,
+            Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                loggerFactory.UseAsNHibernateLoggerProvider();
             }
             app.Use(async (context, next) =>
             {

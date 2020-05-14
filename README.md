@@ -38,10 +38,6 @@ class Program()
         ...
         var loggerFactory = services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
         loggerFactory.UseAsNHibernateLoggerProvider();
-    }
-
-    private static IServiceProvider ConfigureServices(IServiceCollection services)
-    {
         ...
     }
 }
@@ -53,9 +49,10 @@ ASP.NET Core
 ...
 public class Startup
 {
-    public Startup(ILoggerFactory loggerFactory)
+    public Configure(ILoggerFactory loggerFactory)
     {
         loggerFactory.UseAsNHibernateLoggerProvider();
+        ...
     }
 }
 ```
