@@ -1,10 +1,10 @@
 using System;
-using System.IO;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 using SampleShared.Domain;
@@ -16,13 +16,25 @@ namespace SampleApp
     {
         public static void Main(string[] args)
         {
-            var env = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production";
-            Configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env}.json", optional: true)
-                .Build();
-            var services = ConfigureServices(new ServiceCollection());
+            var services = Host.CreateDefaultBuilder()
+                .ConfigureServices((context, services) =>
+                {
+                    services.AddSingleton(_ =>
+                    {
+                        var dbCfg = SQLiteConfiguration.Standard
+                            .ConnectionString(context.Configuration.GetConnectionString("System.Data.SQLite"))
+                            // https://sqlite.org/isolation.html
+                            .IsolationLevel(System.Data.IsolationLevel.Serializable)
+                            .ShowSql()
+                            .FormatSql();
+                        return Fluently.Configure()
+                            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TodoMap>())
+                            .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
+                            .Database(dbCfg)
+                            .Diagnostics(d => d.OutputToConsole().Enable())
+                            .BuildSessionFactory();
+                    });
+                }).Build().Services;
             var loggerFactory = services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
             loggerFactory.UseAsNHibernateLoggerProvider();
             var sessionFactory = services.GetService<ISessionFactory>();
@@ -38,35 +50,6 @@ namespace SampleApp
             }
             Console.WriteLine("Press the ANY key to exit...");
             Console.ReadKey();
-        }
-
-        private static IConfiguration Configuration { get; set; }
-
-        private static IServiceProvider ConfigureServices(IServiceCollection services)
-        {
-            services.AddSingleton(Configuration);
-            services.AddLogging(logging =>
-            {
-                logging.AddConfiguration(Configuration.GetSection("Logging"));
-                logging.AddDebug();
-            });
-            services.AddSingleton(sp =>
-            {
-                var configuration = sp.GetRequiredService<IConfiguration>();
-                var dbCfg = SQLiteConfiguration.Standard
-                    .ConnectionString(configuration.GetConnectionString("System.Data.SQLite"))
-                    // https://sqlite.org/isolation.html
-                    .IsolationLevel(System.Data.IsolationLevel.Serializable)
-                    .ShowSql()
-                    .FormatSql();
-                return Fluently.Configure()
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TodoMap>())
-                    .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
-                    .Database(dbCfg)
-                    .Diagnostics(d => d.OutputToConsole().Enable())
-                    .BuildSessionFactory();
-            });
-            return services.BuildServiceProvider();
         }
     }
 }
