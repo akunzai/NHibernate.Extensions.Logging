@@ -17,15 +17,21 @@ namespace SampleWebApp
 {
     public class Startup
     {
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        IConfiguration Configuration { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton(sp =>
+            services.AddSingleton(resolver =>
             {
-                var configuration = sp.GetRequiredService<IConfiguration>();
                 var dbCfg = SQLiteConfiguration.Standard
-                        .ConnectionString(configuration.GetConnectionString("System.Data.SQLite"))
+                        .ConnectionString(Configuration.GetConnectionString("System.Data.SQLite"))
                         // https://sqlite.org/isolation.html
                         .IsolationLevel(System.Data.IsolationLevel.Serializable)
                         .ShowSql()
