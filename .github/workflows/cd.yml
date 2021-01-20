@@ -17,10 +17,12 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
+          source-url: https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.NUGET_AUTH_TOKEN}}
       - name: Build packages
         run: |
           dotnet --info
           dotnet pack -c Release -o packages
       - name: Push to NuGet.org
-        if: secrets.NUGET_API_KEY
-        run: dotnet nuget push packages/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push packages/*.nupkg --skip-duplicate
