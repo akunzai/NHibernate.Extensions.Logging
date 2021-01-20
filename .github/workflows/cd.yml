@@ -22,5 +22,5 @@ jobs:
           dotnet --info
           dotnet pack -c Release -o packages
       - name: Push to NuGet.org
-        if: secrets.NUGET_API_KEY
+        if: ${{ secrets.NUGET_API_KEY }}
         run: dotnet nuget push packages/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
