@@ -10,7 +10,7 @@
 [nuget]: https://www.nuget.org/packages/NHibernate.Extensions.Logging/
 [nuget-badge]: https://img.shields.io/nuget/v/NHibernate.Extensions.Logging.svg?style=flat-square
 
-use Microsoft.Extensions.Logging as NHibernate logging provider
+Use Microsoft.Extensions.Logging as NHibernate logging provider
 
 ## Installation
 
