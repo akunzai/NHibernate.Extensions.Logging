@@ -2,32 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2019-02-27
+## 2.2.0 (2021-05-26)
 
-## NHibernate.Extensions.Logging 2.1.0
+- Bump NHibernate from to 5.1.0 to 5.3.8
+- Bump Microsoft.Extensions.Logging.Abstractions from 2.0.0 to 2.2.0
+- Fixes known vulnerabilities in dependency graph [#28](https://github.com/akunzai/NHibernate.Extensions.Logging/pull/28)
+
+## 2.1.0 (2019-02-27)
 
 - Signing assembly with Strong Name
 
-## 2018-10-16
-
-## NHibernate.Extensions.Logging 2.0.0
+## 2.0.0 (2018-10-16)
 
 - Support NHibernate 5.1.0
 
-## 2018-05-18
-
-### NHibernate.Extensions.Logging 1.1.1
+## 1.1.1 (2018-05-18)
 
 - Fix ambiguous extension method class name
 
-## 2018-01-15
-
-### NHibernate.Extensions.Logging 1.1.1
+## 1.1.1 (2018-01-15)
 
 - Downgrade to NHibernate 3.1.0
 
-## 2018-01-02
-
-### NHibernate.Extensions.Logging 1.0.0
+## 1.0.0 (2018-01-02)
 
 - Initial Release
