@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="NHibernate" Version="5.3.8" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.114" />
   </ItemGroup>
 
   <ItemGroup>
