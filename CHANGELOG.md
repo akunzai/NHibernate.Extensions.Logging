@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 2.2.0 (2021-05-26)
 
-- Bump NHibernate from to 5.1.0 to 5.3.8
+- Bump NHibernate from 5.1.0 to 5.3.8
 - Bump Microsoft.Extensions.Logging.Abstractions from 2.0.0 to 2.2.0
 - Fixes known vulnerabilities in dependency graph [#28](https://github.com/akunzai/NHibernate.Extensions.Logging/pull/28)
 
