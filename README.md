@@ -38,28 +38,45 @@ Console App
 
 ```csharp
 ...
-class Program()
+var env = services.GetService<IHostEnvironment>();
+if (env.IsDevelopment())
 {
-    static void Main(string[] args)
-    {
-        ...
-        var loggerFactory = services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
-        loggerFactory.UseAsNHibernateLoggerProvider();
-        ...
-    }
+    var loggerFactory = services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
+    loggerFactory.UseAsNHibernateLoggerProvider();
 }
 ```
 
 ASP.NET Core
 
 ```csharp
-...
 public class Startup
 {
-    public Configure(ILoggerFactory loggerFactory)
+    ...
+    public Configure(
+        IApplicationBuilder app,
+        IWebHostEnvironment env,
+        Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)
     {
-        loggerFactory.UseAsNHibernateLoggerProvider();
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            loggerFactory.UseAsNHibernateLoggerProvider();
+        }
         ...
     }
+}
+```
+
+ASP.NET Core Minimal APIs
+
+```csharp
+...
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    var loggerFactory = app.Services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
+    loggerFactory.UseAsNHibernateLoggerProvider();
 }
 ```
