@@ -38,12 +38,17 @@ Console App
 
 ```csharp
 ...
-var env = services.GetService<IHostEnvironment>();
-if (env.IsDevelopment())
+services.AddSingleton<ISessionFactory>(resolver =>
 {
-    var loggerFactory = services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
-    loggerFactory.UseAsNHibernateLoggerProvider();
-}
+    var env = resolver.GetRequiredService<IHostEnvironment>();
+    if (env.IsDevelopment())
+    {
+        var loggerFactory = resolver.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
+        loggerFactory.UseAsNHibernateLoggerProvider();
+    }
+    ...
+    // return ISessionFactory implementation
+});
 ```
 
 ASP.NET Core
@@ -52,16 +57,19 @@ ASP.NET Core
 public class Startup
 {
     ...
-    public Configure(
-        IApplicationBuilder app,
-        IWebHostEnvironment env,
-        Microsoft.Extensions.Logging.ILoggerFactory loggerFactory)
+    public ConfigureServices(IServiceCollection services)
     {
-        if (env.IsDevelopment())
+        services.AddSingleton<ISessionFactory>(resolver =>
         {
-            app.UseDeveloperExceptionPage();
-            loggerFactory.UseAsNHibernateLoggerProvider();
-        }
+            var env = resolver.GetRequiredService<IWebHostEnvironment>();
+            if (env.IsDevelopment())
+            {
+                var loggerFactory = resolver.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
+                loggerFactory.UseAsNHibernateLoggerProvider();
+            }
+            ...
+            // return ISessionFactory implementation
+        });
         ...
     }
 }
@@ -70,13 +78,18 @@ public class Startup
 ASP.NET Core Minimal APIs
 
 ```csharp
-...
-var app = builder.Build();
+var builder = WebApplication.CreateBuilder(args);
 
-if (app.Environment.IsDevelopment())
+builder.Services.AddSingleton<ISessionFactory>(resolver =>
 {
-    app.UseDeveloperExceptionPage();
-    var loggerFactory = app.Services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
-    loggerFactory.UseAsNHibernateLoggerProvider();
-}
+    var env = resolver.GetRequiredService<IWebHostEnvironment>();
+    if (env.IsDevelopment())
+    {
+        var loggerFactory = resolver.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
+        loggerFactory.UseAsNHibernateLoggerProvider();
+    }
+    ...
+    // return ISessionFactory implementation
+});
+...
 ```

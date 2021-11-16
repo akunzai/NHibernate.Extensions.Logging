@@ -8,8 +8,14 @@ using SampleShared.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton(_ =>
+builder.Services.AddSingleton(resolver =>
 {
+    var env = resolver.GetRequiredService<IWebHostEnvironment>();
+    if (env.IsDevelopment())
+    {
+        var loggerFactory = resolver.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
+        loggerFactory.UseAsNHibernateLoggerProvider();
+    }
     var dbCfg = SQLiteConfiguration.Standard
             .ConnectionString(builder.Configuration.GetConnectionString("System.Data.SQLite"))
             // https://sqlite.org/isolation.html
@@ -30,8 +36,6 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    var loggerFactory = app.Services.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
-    loggerFactory.UseAsNHibernateLoggerProvider();
 }
 
 app.Use(async (context, next) =>
