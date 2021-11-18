@@ -19,6 +19,7 @@ For NHibernate >= 5.1.0
 ```shell
 # Package Manager
 Install-Package NHibernate.Extensions.Logging
+
 # .NET CLI
 dotnet add package NHibernate.Extensions.Logging
 ```
@@ -28,6 +29,7 @@ For NHibernate < 5.1.0
 ```shell
 # Package Manager
 Install-Package NHibernate.Extensions.Logging -Version 1.1.1
+
 # .NET CLI
 dotnet add package NHibernate.Extensions.Logging -Version 1.1.1
 ```
@@ -37,7 +39,7 @@ dotnet add package NHibernate.Extensions.Logging -Version 1.1.1
 Console App
 
 ```csharp
-...
+// ...
 services.AddSingleton<ISessionFactory>(resolver =>
 {
     var env = resolver.GetRequiredService<IHostEnvironment>();
@@ -46,7 +48,7 @@ services.AddSingleton<ISessionFactory>(resolver =>
         var loggerFactory = resolver.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
         loggerFactory.UseAsNHibernateLoggerProvider();
     }
-    ...
+    // ...
     // return ISessionFactory implementation
 });
 ```
@@ -56,7 +58,7 @@ ASP.NET Core
 ```csharp
 public class Startup
 {
-    ...
+    // ...
     public ConfigureServices(IServiceCollection services)
     {
         services.AddSingleton<ISessionFactory>(resolver =>
@@ -67,10 +69,10 @@ public class Startup
                 var loggerFactory = resolver.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
                 loggerFactory.UseAsNHibernateLoggerProvider();
             }
-            ...
+            // ...
             // return ISessionFactory implementation
         });
-        ...
+        // ...
     }
 }
 ```
@@ -88,8 +90,8 @@ builder.Services.AddSingleton<ISessionFactory>(resolver =>
         var loggerFactory = resolver.GetRequiredService<Microsoft.Extensions.Logging.ILoggerFactory>();
         loggerFactory.UseAsNHibernateLoggerProvider();
     }
-    ...
+    // ...
     // return ISessionFactory implementation
 });
-...
+// ...
 ```
