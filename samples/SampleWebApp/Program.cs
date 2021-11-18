@@ -33,11 +33,6 @@ builder.Services.AddSingleton(resolver =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-
 app.Use(async (context, next) =>
 {
     var sessionFactory = context.RequestServices.GetRequiredService<ISessionFactory>();
