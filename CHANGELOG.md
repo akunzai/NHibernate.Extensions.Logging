@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.3.0 (2022-04-20)
+
+- Bump NHibernate from 5.3.8 to 5.3.11
+- Drop support for net461 target framework
+- [Use the ASP.NET Core shared framework](https://docs.microsoft.com/aspnet/core/fundamentals/target-aspnetcore#use-the-aspnet-core-shared-framework)
+
 ## 2.2.0 (2021-05-26)
 
 - Bump NHibernate from 5.1.0 to 5.3.8
