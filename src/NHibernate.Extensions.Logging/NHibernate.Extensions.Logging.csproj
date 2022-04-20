@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
-    <Description>use Microsoft.Extensions.Logging as NHibernate logging provider</Description>
+    <Description>Use Microsoft.Extensions.Logging as NHibernate logging provider</Description>
     <Version>2.3.0</Version>
   </PropertyGroup>
 
