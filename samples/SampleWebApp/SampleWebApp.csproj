@@ -18,12 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115.5" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115.5"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\NHibernate.Extensions.Logging\NHibernate.Extensions.Logging.csproj" />
-    <ProjectReference Include="..\SampleShared\SampleShared.csproj" />
+    <ProjectReference Include="..\..\src\NHibernate.Extensions.Logging\NHibernate.Extensions.Logging.csproj"/>
+    <ProjectReference Include="..\SampleShared\SampleShared.csproj"/>
   </ItemGroup>
 
 </Project>
