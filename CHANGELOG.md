@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.3.1 (2022-07-26)
+
+- Fix vulnerable packages
+
 ## 2.3.0 (2022-04-20)
 
 - Bump NHibernate from 5.3.8 to 5.3.11
