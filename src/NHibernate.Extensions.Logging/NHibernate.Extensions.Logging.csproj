@@ -3,20 +3,21 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <Description>Use Microsoft.Extensions.Logging as NHibernate logging provider</Description>
-    <Version>2.3.0</Version>
+    <Version>2.3.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NHibernate" Version="5.3.11"/>
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1"/>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0"/>
-    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1"/>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
     <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
 </Project>
