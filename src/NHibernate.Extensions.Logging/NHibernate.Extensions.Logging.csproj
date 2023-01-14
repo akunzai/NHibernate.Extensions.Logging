@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <Description>Use Microsoft.Extensions.Logging as NHibernate logging provider</Description>
-    <Version>2.3.2</Version>
+    <Version>2.3.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NHibernate" Version="5.1.7"/>
+    <PackageReference Include="NHibernate" Version="5.2.0"/>
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1"/>
   </ItemGroup>
 

@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.3.3 (2023-01-14)
+
+- Upgrade NHibernate from 5.1.7 to 5.2.0
+
 ## 2.3.2 (2023-01-14)
 
 - Downgrade NHibernate from 5.3.11 to 5.1.7
