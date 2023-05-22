@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="3.2.0"/>
+    <PackageReference Include="coverlet.collector" Version="6.0.0"/>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
     <PackageReference Include="Microsoft.TestPlatform.ObjectModel" Version="17.6.0" Condition="$(TargetFramework.StartsWith('net4')) AND '$(OS)' != 'Windows_NT'"/>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
