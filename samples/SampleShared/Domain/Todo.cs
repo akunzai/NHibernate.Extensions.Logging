@@ -1,17 +1,16 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SampleShared.Domain
+namespace SampleShared.Domain;
+
+public class Todo
 {
-    public class Todo
-    {
-        public virtual Guid Id { get; set; }
+    public virtual Guid Id { get; set; }
 
-        [Required]
-        public virtual string Title { get; set; }
+    [Required]
+    public virtual string Title { get; set; }
 
-        public virtual bool Completed { get; set; }
+    public virtual bool Completed { get; set; }
 
-        public virtual DateTime Created { get; set; } = DateTime.Now;
-    }
+    public virtual DateTime Created { get; set; } = DateTime.Now;
 }

@@ -2,67 +2,66 @@ using System;
 using Microsoft.Extensions.Logging;
 using Xunit;
 
-namespace NHibernate.Extensions.Logging.Tests
+namespace NHibernate.Extensions.Logging.Tests;
+
+public class MicrosoftLoggerTests
 {
-    public class MicrosoftLoggerTests
+    private readonly MockLogger _mock;
+    private readonly INHibernateLogger _logger;
+
+    public MicrosoftLoggerTests()
     {
-        private readonly MockLogger _mock;
-        private readonly INHibernateLogger _logger;
+        _mock = new MockLogger();
+        _logger = new MicrosoftLogger(_mock);
+    }
 
-        public MicrosoftLoggerTests()
-        {
-            _mock = new MockLogger();
-            _logger = new MicrosoftLogger(_mock);
-        }
+    [Fact]
+    public void LoggingWithMessage()
+    {
+        // Arrange
+        var message = Guid.NewGuid().ToString();
 
-        [Fact]
-        public void LoggingWithMessage()
-        {
-            // Arrange
-            var message = Guid.NewGuid().ToString();
+        // Act
+        _logger.Debug(message);
 
-            // Act
-            _logger.Debug(message);
+        // Assert
+        Assert.IsType<NHibernateLogValues>(_mock.State);
+        Assert.Equal(message, _mock.State.ToString());
+        Assert.Equal(LogLevel.Debug, _mock.LogLevel);
+        Assert.Null(_mock.Exception);
+    }
 
-            // Assert
-            Assert.IsType<NHibernateLogValues>(_mock.State);
-            Assert.Equal(message, _mock.State.ToString());
-            Assert.Equal(LogLevel.Debug, _mock.LogLevel);
-            Assert.Null(_mock.Exception);
-        }
+    [Fact]
+    public void LoggingWithException()
+    {
+        // Arrange
+        var message = Guid.NewGuid().ToString();
+        var exception = new Exception("Test");
 
-        [Fact]
-        public void LoggingWithException()
-        {
-            // Arrange
-            var message = Guid.NewGuid().ToString();
-            var exception = new Exception("Test");
+        // Act
+        _logger.Error(exception, message);
 
-            // Act
-            _logger.Error(exception, message);
+        // Assert
+        Assert.IsType<NHibernateLogValues>(_mock.State);
+        Assert.Equal(message, _mock.State.ToString());
+        Assert.Equal(LogLevel.Error, _mock.LogLevel);
+        Assert.Equal(exception, _mock.Exception);
+    }
 
-            // Assert
-            Assert.IsType<NHibernateLogValues>(_mock.State);
-            Assert.Equal(message, _mock.State.ToString());
-            Assert.Equal(LogLevel.Error, _mock.LogLevel);
-            Assert.Equal(exception, _mock.Exception);
-        }
+    [Fact]
+    public void LoggingWithFormatter()
+    {
+        // Arrange
+        var format = "Test {0}";
+        var arg = Guid.NewGuid();
 
-        [Fact]
-        public void LoggingWithFormatter()
-        {
-            // Arrange
-            var format = "Test {0}";
-            var arg = Guid.NewGuid();
+        // Act
+        _logger.Info(format, arg);
 
-            // Act
-            _logger.Info(format, arg);
-
-            // Assert
-            Assert.IsType<NHibernateLogValues>(_mock.State);
-            Assert.Equal(string.Format(format, arg), _mock.State.ToString());
-            Assert.Equal(LogLevel.Information, _mock.LogLevel);
-            Assert.Null(_mock.Exception);
-        }
+        // Assert
+        Assert.IsType<NHibernateLogValues>(_mock.State);
+        Assert.Equal(string.Format(format, arg), _mock.State.ToString());
+        Assert.Equal(LogLevel.Information, _mock.LogLevel);
+        Assert.Null(_mock.Exception);
     }
 }
