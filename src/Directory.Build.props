@@ -6,9 +6,9 @@
     <PackageProjectUrl>https://github.com/akunzai/NHibernate.Extensions.Logging</PackageProjectUrl>
     <PackageTags>NHibernate;Logging</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
 
@@ -21,9 +21,5 @@
   <PropertyGroup Condition="'$(CI)' == 'True' ">
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
-  </ItemGroup>
 
 </Project>
