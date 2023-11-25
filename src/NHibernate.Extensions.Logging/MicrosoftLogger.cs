@@ -36,7 +36,7 @@ public class MicrosoftLogger : INHibernateLogger
             eventId: 0,
             state: state,
             exception: exception,
-            formatter: (s,e) => s.ToString());
+            formatter: (s,_) => s.ToString());
     }
 
     public bool IsEnabled(NHibernateLogLevel logLevel)
