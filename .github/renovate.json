@@ -9,6 +9,12 @@
     ":automergeTesters",
     ":automergeRequireAllStatusChecks"
   ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["NHibernate"],
+      "automerge": false
+    }
+  ],
   "recreateWhen": "never",
   "major": {
     "dependencyDashboardApproval": true
