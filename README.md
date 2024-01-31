@@ -14,16 +14,8 @@ Use Microsoft.Extensions.Logging as NHibernate logging provider
 
 ## Installation
 
-For NHibernate >= 5.1.0
-
 ```shell
 dotnet add package NHibernate.Extensions.Logging
-```
-
-For NHibernate < 5.1.0
-
-```shell
-dotnet add package NHibernate.Extensions.Logging -Version 1.1.1
 ```
 
 ## Usage
