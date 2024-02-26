@@ -11,9 +11,9 @@
   <ItemGroup>
     <PackageVersion Include="coverlet.collector" Version="6.0.1" />
     <PackageVersion Include="FluentNHibernate" Version="3.3.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageVersion Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
-    <PackageVersion Include="Microsoft.TestPlatform.ObjectModel" Version="17.8.0" />
+    <PackageVersion Include="Microsoft.TestPlatform.ObjectModel" Version="17.9.0" />
     <PackageVersion Include="Moq" Version="4.20.70" />
     <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageVersion Include="NHibernate" Version="5.4.7" />
