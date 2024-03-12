@@ -1,10 +1,10 @@
 # NHibernate.Extensions.Logging
 
-[![Build Status][ci-badge]][ci] [![Code Coverage][codecov-badge]][codecov]
+[![Build Status][build-badge]][build] [![Code Coverage][codecov-badge]][codecov]
 [![NuGet version][nuget-badge]][nuget]
 
-[ci]: https://github.com/akunzai/NHibernate.Extensions.Logging/actions?query=workflow%3ACI
-[ci-badge]: https://github.com/akunzai/NHibernate.Extensions.Logging/workflows/CI/badge.svg
+[build]: https://github.com/akunzai/NHibernate.Extensions.Logging/actions/workflows/build.yml
+[build-badge]: https://github.com/akunzai/NHibernate.Extensions.Logging/actions/workflows/build.yml/badge.svg
 [codecov]: https://codecov.io/gh/akunzai/NHibernate.Extensions.Logging
 [codecov-badge]: https://codecov.io/gh/akunzai/NHibernate.Extensions.Logging/branch/main/graph/badge.svg?token=OQLZMRDOTM
 [nuget]: https://www.nuget.org/packages/NHibernate.Extensions.Logging/
