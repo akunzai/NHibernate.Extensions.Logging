@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/SampleApp/SampleApp.csproj" />
+    <Project Path="samples/SampleShared/SampleShared.csproj" />
+    <Project Path="samples/SampleWebApp/SampleWebApp.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".config/dotnet-tools.json" />
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <File Path="src/Directory.Build.props" />
+    <Project Path="src/NHibernate.Extensions.Logging/NHibernate.Extensions.Logging.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/NHibernate.Extensions.Logging.Tests/NHibernate.Extensions.Logging.Tests.csproj" />
+  </Folder>
+</Solution>
