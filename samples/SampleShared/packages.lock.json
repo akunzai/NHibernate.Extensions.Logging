@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "dependencies": {
+    "net10.0": {
+      "FluentNHibernate": {
+        "type": "Direct",
+        "requested": "[3.4.1, )",
+        "resolved": "3.4.1",
+        "contentHash": "uPjamAeZEpgD9ITPa40qNIA9GQbdEqCq9OwpNcHAUSSDu6TULDIKYK9BylBgr47mQsR/bInCsMOwbNWn5XKpWA==",
+        "dependencies": {
+          "NHibernate": "5.4.9"
+        }
+      },
+      "Antlr3.Runtime": {
+        "type": "Transitive",
+        "resolved": "3.5.1",
+        "contentHash": "ZwCEpLCLZXkjzf1lYEixp9hgVlYYk33ACHn6xjFyVhGRi2BpoYQez0qtatbetdylASWYTG+cGz0CGR4z66JM4w==",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        }
+      },
+      "Iesi.Collections": {
+        "type": "Transitive",
+        "resolved": "4.0.4",
+        "contentHash": "jlebSjv2a7amYfKXEUsPDSf2Yi9r0/FkvvT6Dy7ehl7z8du+dTGqKDu+fYbnE+WuIz/v3prYm1jpBljMrY1p+Q==",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        }
+      },
+      "Microsoft.NETCore.Platforms": {
+        "type": "Transitive",
+        "resolved": "1.1.0",
+        "contentHash": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A=="
+      },
+      "Microsoft.Win32.SystemEvents": {
+        "type": "Transitive",
+        "resolved": "9.0.2",
+        "contentHash": "5BkGZ6mHp2dHydR29sb0fDfAuqkv30AHtTih8wMzvPZysOmBFvHfnkR2w3tsc0pSiIg8ZoKyefJXWy9r3pBh0w=="
+      },
+      "NETStandard.Library": {
+        "type": "Transitive",
+        "resolved": "1.6.1",
+        "contentHash": "WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "Remotion.Linq": {
+        "type": "Transitive",
+        "resolved": "2.2.0",
+        "contentHash": "fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw=="
+      },
+      "Remotion.Linq.EagerFetching": {
+        "type": "Transitive",
+        "resolved": "2.2.0",
+        "contentHash": "d6bkH5kROJPFsdvDy4yQved9I4ickamytPByPyuQcH9dk1ef4jciajo50vTQhheyOHeWOgLh97UvkiHV8QSgeQ==",
+        "dependencies": {
+          "Remotion.Linq": "2.2.0"
+        }
+      },
+      "System.Configuration.ConfigurationManager": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "7T+m0kDSlIPTHIkPMIu6m6tV6qsMqJpvQWW2jIc2qi7sn40qxFo0q+7mEQAhMPXZHMKnWrnv47ntGlM/ejvw3g==",
+        "dependencies": {
+          "System.Security.Cryptography.ProtectedData": "6.0.0",
+          "System.Security.Permissions": "6.0.0"
+        }
+      },
+      "System.Security.Cryptography.ProtectedData": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "rp1gMNEZpvx9vP0JW0oHLxlf8oSiQgtno77Y4PLUBjSiDYoD77Y8uXHr1Ea5XG4/pIKhqAdxZ8v8OTUtqo9PeQ=="
+      },
+      "System.Security.Permissions": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "T/uuc7AklkDoxmcJ7LGkyX1CcSviZuLCa4jg3PekfJ7SU0niF0IVTXwUiNVP9DSpzou2PpxJ+eNY2IfDM90ZCg==",
+        "dependencies": {
+          "System.Windows.Extensions": "6.0.0"
+        }
+      },
+      "System.Windows.Extensions": {
+        "type": "Transitive",
+        "resolved": "6.0.0",
+        "contentHash": "IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
+        "dependencies": {
+          "System.Drawing.Common": "6.0.0"
+        }
+      },
+      "NHibernate": {
+        "type": "CentralTransitive",
+        "requested": "[5.5.2, )",
+        "resolved": "5.5.2",
+        "contentHash": "qTFlQDp7eDW96u2vNwpaa28uWz5eSKT/73P7RfUob3Aj2Zop7xnMZyAm7wlJmf5eX3DVn8W7SwM5QrXfkvVR/w==",
+        "dependencies": {
+          "Antlr3.Runtime": "[3.5.1, 4.0.0)",
+          "Iesi.Collections": "[4.0.4, 5.0.0)",
+          "Remotion.Linq": "[2.2.0, 3.0.0)",
+          "Remotion.Linq.EagerFetching": "[2.2.0, 3.0.0)",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        }
+      },
+      "System.Drawing.Common": {
+        "type": "CentralTransitive",
+        "requested": "[9.0.2, )",
+        "resolved": "9.0.2",
+        "contentHash": "JU947wzf8JbBS16Y5EIZzAlyQU+k68D7LRx6y03s2wlhlvLqkt/8uPBrjv2hJnnaJKbdb0GhQ3JZsfYXhrRjyg==",
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "9.0.2"
+        }
+      }
+    }
+  }
+}

@@ -64,4 +64,41 @@ public class MicrosoftLoggerTests
         Assert.Equal(LogLevel.Information, _mock.LogLevel);
         Assert.Null(_mock.Exception);
     }
+
+    [Theory]
+    [InlineData(NHibernateLogLevel.Trace)]
+    [InlineData(NHibernateLogLevel.Debug)]
+    [InlineData(NHibernateLogLevel.Info)]
+    [InlineData(NHibernateLogLevel.Warn)]
+    [InlineData(NHibernateLogLevel.Error)]
+    [InlineData(NHibernateLogLevel.Fatal)]
+    [InlineData(NHibernateLogLevel.None)]
+    public void IsEnabledMapping(NHibernateLogLevel nhLevel)
+    {
+        // Act
+        var result = _logger.IsEnabled(nhLevel);
+
+        // Assert
+        Assert.True(result); // MockLogger always returns true
+    }
+
+    [Theory]
+    [InlineData(NHibernateLogLevel.Trace, LogLevel.Trace)]
+    [InlineData(NHibernateLogLevel.Debug, LogLevel.Debug)]
+    [InlineData(NHibernateLogLevel.Info, LogLevel.Information)]
+    [InlineData(NHibernateLogLevel.Warn, LogLevel.Warning)]
+    [InlineData(NHibernateLogLevel.Error, LogLevel.Error)]
+    [InlineData(NHibernateLogLevel.Fatal, LogLevel.Critical)]
+    [InlineData(NHibernateLogLevel.None, LogLevel.None)]
+    public void LogLevelMapping(NHibernateLogLevel nhLevel, LogLevel msLevel)
+    {
+        // Arrange
+        var message = "test";
+
+        // Act
+        _logger.Log(nhLevel, new NHibernateLogValues(message, null), null);
+
+        // Assert
+        Assert.Equal(msLevel, _mock.LogLevel);
+    }
 }
