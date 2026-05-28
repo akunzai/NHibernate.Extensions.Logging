@@ -234,6 +234,9 @@ PublishScripts/
 *.nuget.props
 *.nuget.targets
 
+# NuGet lock files (we use setup-dotnet cache + Directory.Packages.props instead of committing packages.lock.json)
+**/packages.lock.json
+
 # Microsoft Azure Build Output
 csx/
 *.build.csdef
