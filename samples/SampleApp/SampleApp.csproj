@@ -24,7 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SQLite.Core" />
+    <PackageReference Include="System.Data.SQLite" />
+    <PackageReference Include="SourceGear.sqlite3.ext" />
   </ItemGroup>
 
   <ItemGroup>
