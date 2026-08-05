@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
     <Description>Use Microsoft.Extensions.Logging as NHibernate logging provider</Description>
-    <Version>4.0.2-rc.0</Version>
+    <Version>4.0.2</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
