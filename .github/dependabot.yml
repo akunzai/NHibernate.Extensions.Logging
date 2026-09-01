@@ -4,8 +4,43 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
+    # Floating major tags already track latest minor/patch at runtime.
+    # Only surface major action upgrades.
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-minor
+          - version-update:semver-patch
   - package-ecosystem: nuget
     directory: /
     schedule:
-      interval: monthly
+      interval: weekly
+    cooldown:
+      default-days: 3
+    groups:
+      aspnetcore:
+        patterns:
+          - Microsoft.AspNetCore.*
+      extensions:
+        patterns:
+          - Microsoft.Extensions.*
+      nhibernate:
+        patterns:
+          - NHibernate*
+          - FluentNHibernate
+      sqlite:
+        patterns:
+          - System.Data.SQLite*
+          - SourceGear.sqlite3.*
+      test-sdk:
+        patterns:
+          - Microsoft.NET.Test.Sdk
+          - Microsoft.Testing.*
+          - Microsoft.TestPlatform.ObjectModel
+      xunit:
+        patterns:
+          - xunit.*
+      system:
+        patterns:
+          - System.*
