@@ -30,9 +30,9 @@ jobs:
           dotnet build -c Release
       - name: Test
         run: |
-          dotnet test --collect:"XPlat Code Coverage"
+          dotnet test --coverage --coverage-output-format cobertura
           dotnet tool restore
-          dotnet tool run reportgenerator
+          dotnet tool run reportgenerator -reports:"TestResults/*.cobertura.xml" -targetdir:"coverage" -reporttypes:TextSummary
           [[ -f "./coverage/Summary.txt" ]] && cat "./coverage/Summary.txt"
       - uses: codecov/codecov-action@v7
         env:

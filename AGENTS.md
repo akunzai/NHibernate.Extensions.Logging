@@ -4,7 +4,7 @@ Use Microsoft.Extensions.Logging as an NHibernate logging provider.
 
 ## Commands
 - Build: `dotnet build -c Release`
-- Test: `dotnet test --collect:"XPlat Code Coverage"`
+- Test: `dotnet test --coverage --coverage-output-format cobertura`
 - Restore only: `dotnet restore`
 - Check for vulnerable packages: `dotnet list <project> package --vulnerable --include-transitive`
 
