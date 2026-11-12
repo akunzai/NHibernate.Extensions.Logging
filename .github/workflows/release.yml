@@ -23,9 +23,7 @@ jobs:
         with:
           cache: true
           cache-dependency-path: '**/Directory.Packages.props'
-          dotnet-version: |
-            8.0.x
-            10.0.x
+          dotnet-version: 11.0.x
       - name: Build packages
         run: |
           dotnet --info
